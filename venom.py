@@ -16,11 +16,11 @@ from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
 loop = asyncio.get_event_loop()
 
-TOKEN = '6601668746:AAG6BLLqsoVKKcKOPr9lmQajR_zs26H21qI'
-MONGO_URI = 'https://t.me/+BgFUs_vNU35kYzRl@cluster0.ythilmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tlsAllowInvalidCertificates=true'
-FORWARD_CHANNEL_ID = --1002234454317
-CHANNEL_ID = -1002234454317
-error_channel_id = -1002234454317
+TOKEN = 'TOKEN'
+MONGO_URI = 'mongodb+srv://VENOMxCRAZY:CRAZYxVENOM@cluster0.ythilmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0&tlsAllowInvalidCertificates=true'
+FORWARD_CHANNEL_ID = -1002224570220
+CHANNEL_ID = -1002224570220
+error_channel_id = -1002224570220
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
@@ -148,7 +148,7 @@ def attack_command(message):
     try:
         user_data = users_collection.find_one({"user_id": user_id})
         if not user_data or user_data['plan'] == 0:
-            bot.send_message(chat_id, "YOU AR NOT APPROVE OK GANMARA🖕")
+            bot.send_message(chat_id, "You are not approved to use this bot. Please contact the administrator.")
             return
 
         if user_data['plan'] == 1 and users_collection.count_documents({"plan": 1}) > 99:
@@ -159,7 +159,7 @@ def attack_command(message):
             bot.send_message(chat_id, "Your Instant++ Plan 💥 is currently not available due to limit reached.")
             return
 
-        bot.send_message(chat_id, "ENTER <IP> <PORT> <TIME> OK")
+        bot.send_message(chat_id, "Enter the target IP, port, and duration (in seconds) separated by spaces.")
         bot.register_next_step_handler(message, process_attack_command)
     except Exception as e:
         logging.error(f"Error in attack command: {e}")
@@ -172,7 +172,7 @@ def attack_command(message):
     try:
         user_data = users_collection.find_one({"user_id": user_id})
         if not user_data or user_data['plan'] == 0:
-            bot.send_message(chat_id, "*YOU AR NOT APPROVE OK GANMARA🖕*", parse_mode='Markdown')
+            bot.send_message(chat_id, "*You are not approved to use this bot. Please contact the administrator.*", parse_mode='Markdown')
             return
 
         if user_data['plan'] == 1 and users_collection.count_documents({"plan": 1}) > 99:
@@ -183,7 +183,7 @@ def attack_command(message):
             bot.send_message(chat_id, "*Your Instant++ Plan 💥 is currently not available due to limit reached.*", parse_mode='Markdown')
             return
 
-        bot.send_message(chat_id, "*ENTER <IP> <PORT> <TIME> OK*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*Enter the target IP, port, and duration (in seconds) separated by spaces.*", parse_mode='Markdown')
         bot.register_next_step_handler(message, process_attack_command)
     except Exception as e:
         logging.error(f"Error in attack command: {e}")
@@ -201,7 +201,7 @@ def process_attack_command(message):
             return
 
         asyncio.run_coroutine_threadsafe(run_attack_command_async(target_ip, target_port, duration), loop)
-        bot.send_message(message.chat.id, f"*BGMI KO CHUD DIYA 😂\n\nHost: {target_ip}\nPort: {target_port}\nTime: {duration}*", parse_mode='Markdown')
+        bot.send_message(message.chat.id, f"*Attack started 💥\n\nHost: {target_ip}\nPort: {target_port}\nTime: {duration}*", parse_mode='Markdown')
     except Exception as e:
         logging.error(f"Error in processing attack command: {e}")
 
@@ -235,7 +235,7 @@ def handle_message(message):
         bot.reply_to(message, "*Instant++ Plan selected*", parse_mode='Markdown')
         attack_command(message)
     elif message.text == "Canary Download✔️":
-        bot.send_message(message.chat.id, "*Please use the following link for Canary Download: https://t.me/+BgFUs_vNU35kYzRl*", parse_mode='Markdown')
+        bot.send_message(message.chat.id, "*Please use the following link for Canary Download: https://t.me/V3NOM_CHEAT/47*", parse_mode='Markdown')
     elif message.text == "My Account🏦":
         user_id = message.from_user.id
         user_data = users_collection.find_one({"user_id": user_id})
@@ -254,7 +254,7 @@ def handle_message(message):
     elif message.text == "Help❓":
         bot.reply_to(message, "*Help selected*", parse_mode='Markdown')
     elif message.text == "Contact admin✔️":
-        bot.reply_to(message, "*Contact admin @DDOSMAKER*", parse_mode='Markdown')
+        bot.reply_to(message, "*Contact admin @venomXcrazy*", parse_mode='Markdown')
     else:
         bot.reply_to(message, "*Invalid option*", parse_mode='Markdown')
 
